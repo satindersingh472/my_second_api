@@ -43,5 +43,8 @@ def delete_item():
     results_json = get_display_results('call delete_item(?)',[id])
     return results_json
 
+@app.get('/api/employee')
+def 
+
 
 app.run(debug=True)
