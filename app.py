@@ -1,4 +1,4 @@
-from unittest import result
+
 from dbhelpers import conn_exe_close
 from flask import Flask, request
 import json
@@ -70,5 +70,6 @@ def delete_employee():
     id = request.json.get('id')
     results_json = get_display_results('call delete_employee(?)',[id])
     return results_json
+
 
 app.run(debug=True)
