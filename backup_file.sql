@@ -42,9 +42,7 @@ INSERT INTO `employee` VALUES
 (1,'satinder','manager','2022-10-04',30),
 (3,'nav','supervisor','2022-10-04',20),
 (4,'sam','team_lead','2022-10-04',18),
-(7,'employee six','team member','2022-10-04',17),
-(8,'jag','ceo','2022-10-04',35),
-(9,'nit','manager','2022-10-05',16);
+(7,'employee six','team member','2022-10-04',17);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +60,7 @@ CREATE TABLE `item` (
   `in_stock_quantity` int(10) unsigned DEFAULT NULL,
   `created_at` date DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,11 +75,10 @@ INSERT INTO `item` VALUES
 (6,'blue paint','blue paint for houses',1200,'2022-10-04'),
 (7,'nails','roofing nails one inch',2000,'2022-10-04'),
 (8,'pipes','2 inch water pipes',500,'2022-10-04'),
-(9,'light bulbs','100 watts bright day light white',500,'2022-10-04'),
-(10,'glue for wood','500 grams of packing ',500,'2022-10-04'),
 (16,'stapler pins','1000 pins in a box',1000,'2022-10-05'),
 (17,'truses','bigger trusses',200,'2022-10-05'),
-(18,'treated wood','lumber for decks',100,'2022-10-05');
+(18,'treated wood','lumber for decks',100,'2022-10-05'),
+(19,'hard wood','hard wood for floors',100,'2022-10-05');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,6 +171,9 @@ BEGIN
 	delete from employee
 	where employee.id = id_input;
 	commit;
+	select count(e.id)
+	from employee e 
+	where e.id =id_input;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -196,6 +196,9 @@ BEGIN
 	DELETE from item
 	where id = id_input;
 	commit;
+	select COUNT(i.id)
+	from item i 
+	where i.id = id_input;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -285,4 +288,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-05 22:23:57
+-- Dump completed on 2022-10-05 23:11:50
