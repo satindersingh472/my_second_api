@@ -59,7 +59,8 @@ def update_quantity_item():
 def delete_item():
     id = request.json.get('id')
     results_json = get_display_results('call delete_item(?)',[id])
-    return results_json
+    if(results_json[0][0]):
+        return 'Deleted successfully'
 
 # it will get the specific employee from the table by just taking id as a param
 @app.get('/api/employee')
@@ -92,7 +93,8 @@ def update_employee_wage():
 def delete_employee():
     id = request.json.get('id')
     results_json =  get_display_results('call delete_employee(?)',[id])
-    return results_json
+    if(results_json[0][0]):
+        return 'Deleted successfully'
 
 
 app.run(debug=True)
