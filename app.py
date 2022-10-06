@@ -37,6 +37,7 @@ def all_items_info():
     return results_json
 
 # it will post the new item to the items table in database
+# it will take 3 arguments and put the values into the table
 @app.post('/api/items')
 def add_new_item():
     name = request.json.get('name')
@@ -45,7 +46,7 @@ def add_new_item():
     results_json = get_display_results('call add_new_item(?,?,?)',[name,description,in_stock_quantity])
     return results_json
 
-
+# it will update the existing value for quantity of an item by taking id and value for quantity
 @app.patch('/api/items')
 def update_quantity_item():
     id = request.json.get('id')
@@ -53,18 +54,22 @@ def update_quantity_item():
     results_json = get_display_results('call update_quantity_item(?,?)',[id,add_quantity])
     return results_json
 
+# it will delete the entire item from table by just taking id
 @app.delete('/api/items')
 def delete_item():
     id = request.json.get('id')
     results_json = get_display_results('call delete_item(?)',[id])
     return results_json
 
+# it will get the specific employee from the table by just taking id as a param
 @app.get('/api/employee')
 def specific_employee():
     id = request.json.get('id')
     results_json = get_display_results('call specific_employee(?)',[id])
     return results_json
 
+# it will add the employee and return the details of an employee 
+#  will require 3 different data from the user
 @app.post('/api/employee')
 def add_employee():
     name = request.json.get('name')
@@ -73,6 +78,8 @@ def add_employee():
     results_json = get_display_results('call add_employee(?,?,?)',[name,position,hourly_wage])
     return results_json
 
+# will update the wage of an employee by just taking id and hourly new wage 
+# and it will replace the original wage to a new wage
 @app.patch('/api/employee')
 def update_employee_wage():
     id = request.json.get('id')
@@ -80,6 +87,7 @@ def update_employee_wage():
     results_json = get_display_results('call update_employee_Wage(?,?)',[id,hourly_wage])
     return results_json
 
+# it will delete the employee if an id of an employee is given as a data
 @app.delete('/api/employee')
 def delete_employee():
     id = request.json.get('id')
