@@ -31,14 +31,14 @@ def get_display_results(statement,params_list):
         return 'Sorry, An error occured'
 
 # it will get all the available items without any params
-@app.get('/api/items')
+@app.get('/api/item')
 def all_items_info():
     results_json  = get_display_results('call all_items_info()',[])
     return results_json
 
 # it will post the new item to the items table in database
 # it will take 3 arguments and put the values into the table
-@app.post('/api/items')
+@app.post('/api/item')
 def add_new_item():
     name = request.json.get('name')
     description = request.json.get('description')
@@ -47,7 +47,7 @@ def add_new_item():
     return results_json
 
 # it will update the existing value for quantity of an item by taking id and value for quantity
-@app.patch('/api/items')
+@app.patch('/api/item')
 def update_quantity_item():
     id = request.json.get('id')
     add_quantity = request.json.get('add_quantity')
@@ -55,7 +55,7 @@ def update_quantity_item():
     return results_json
 
 # it will delete the entire item from table by just taking id
-@app.delete('/api/items')
+@app.delete('/api/item')
 def delete_item():
     id = request.json.get('id')
     results_json = get_display_results('call delete_item(?)',[id])
@@ -65,7 +65,7 @@ def delete_item():
 # it will get the specific employee from the table by just taking id as a param
 @app.get('/api/employee')
 def specific_employee():
-    id = request.json.get('id')
+    id = request.args.get('id')
     results_json = get_display_results('call specific_employee(?)',[id])
     return results_json
 
@@ -85,7 +85,8 @@ def add_employee():
 def update_employee_wage():
     id = request.json.get('id')
     hourly_wage = request.json.get('hourly_wage')
-    results_json = get_display_results('call update_employee_Wage(?,?)',[id,hourly_wage])
+    position = request.json.get('position')
+    results_json = get_display_results('call update_employee_Wage(?,?,?)',[id,hourly_wage,position])
     return results_json
 
 # it will delete the employee if an id of an employee is given as a data
